@@ -1,0 +1,17 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: basicAdModule
+          uri: http://localhost:8080/
+          predicates:
+            - Path=/api/v1/ads
+          filters:
+            - RewritePath=/api/v1/ads, /test2
+        - id: realEstateAdModule
+          uri: http://34.122.104.118:8080/
+          predicates:
+            - Path=/consumer/**
